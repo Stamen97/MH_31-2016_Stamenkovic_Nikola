@@ -250,12 +250,13 @@ public class FrmDrawing extends JFrame {
 					else if(pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex()) instanceof Donut) { //modif. kruga sa rupom, kad je vec else if, krofna ide pre kruga
 						Donut temp = (Donut)pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex());
 						DlgModDonut donutMod = new DlgModDonut();
+						donutMod.getBtnColor().setBackground(temp.getShpColor());
 						donutMod.getTxtCenterX().setText(""+temp.getCenter().getX());
 						donutMod.getTxtCenterY().setText(""+temp.getCenter().getY());
 						donutMod.getTxtRadius().setText(""+temp.getR());
 						donutMod.getTxtInnerR().setText(""+temp.getInnerR());
 						donutMod.setVisible(true);
-						donutMod.setFrameColor(temp.getShpColor());
+						
 						
 						if(donutMod.isAllowedToMod()) {
 							temp.getCenter().moveTo(donutMod.getCenterX(), donutMod.getCenterY());

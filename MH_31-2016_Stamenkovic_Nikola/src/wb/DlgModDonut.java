@@ -39,6 +39,7 @@ public class DlgModDonut extends JDialog {
 	private JLabel lblRadius;
 	private JLabel lblInnerR;
 	private Color frameColor;
+	private JButton btnColor;
 
 	/**
 	 * Launch the application.
@@ -93,7 +94,7 @@ public class DlgModDonut extends JDialog {
 		}
 		
 		JLabel lblColor = new JLabel("Color:");
-		JButton btnColor = new JButton("");
+		btnColor = new JButton("");
 		btnColor.setBackground(frameColor);
 		btnColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -291,5 +292,13 @@ public class DlgModDonut extends JDialog {
 
 	public void setFrameColor(Color frameColor) {
 		this.frameColor = frameColor;
+	}
+
+	public JButton getBtnColor() {
+		return btnColor;
+	}
+
+	public void setBtnColor(JButton btnColor) {
+		this.btnColor = btnColor;
 	}
 }
