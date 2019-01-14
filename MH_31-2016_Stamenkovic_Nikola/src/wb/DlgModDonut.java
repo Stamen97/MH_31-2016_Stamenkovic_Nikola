@@ -94,6 +94,7 @@ public class DlgModDonut extends JDialog {
 		
 		JLabel lblColor = new JLabel("Color:");
 		JButton btnColor = new JButton("");
+		btnColor.setBackground(frameColor);
 		btnColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameColor=JColorChooser.showDialog(null, "Frame color", frameColor);
@@ -202,7 +203,8 @@ public class DlgModDonut extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						allowedToMod=false;
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

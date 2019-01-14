@@ -24,7 +24,7 @@ public class PnlDrawing extends JPanel {
 	private int pomY;
 	private static int lastIndex=-1;
 	
-	static ArrayList<Shape> shapes = new ArrayList<Shape>();
+	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 
 	/**
 	 * Create the panel.
@@ -92,6 +92,7 @@ public class PnlDrawing extends JPanel {
 						shapes.get(lastIndex).setSelected(true);
 					}
 				}
+				repaint();
 			}
 		});
 		
@@ -109,13 +110,12 @@ public class PnlDrawing extends JPanel {
 	}
 	
 	public void paint(Graphics g) {
+		super.paint(g);
 		Iterator<Shape> it = shapes.iterator();
 		while(it.hasNext()) {
 			Shape temp = it.next();
 			temp.draw(g);
 		}
-		getRootPane().validate();
-		getRootPane().repaint();
 	}
 
 	public static int getLastIndex() {
@@ -126,11 +126,11 @@ public class PnlDrawing extends JPanel {
 		PnlDrawing.lastIndex = lastIndex;
 	}
 
-	public static ArrayList<Shape> getShapes() {
+	public ArrayList<Shape> getShapes() {
 		return shapes;
 	}
 
-	public static void setShapes(ArrayList<Shape> shapes) {
-		PnlDrawing.shapes = shapes;
+	public void setShapes(ArrayList<Shape> shapes) {
+		this.shapes = shapes;
 	}
 }

@@ -176,7 +176,7 @@ public class FrmDrawing extends JFrame {
 					DlgDelete deletion = new DlgDelete();
 					deletion.setVisible(true);
 					if(deletion.isAllowedToDelete()) {
-						PnlDrawing.getShapes().remove(PnlDrawing.getLastIndex());
+						pnlWorkspace.getShapes().remove(PnlDrawing.getLastIndex());
 					}
 				}
 				else {
@@ -192,8 +192,8 @@ public class FrmDrawing extends JFrame {
 				OptionAction.setChosenAction(OptionAction.getActionModify()); //ako je izabrana modifikacija
 				btngrpShapes.clearSelection();
 				if(PnlDrawing.getLastIndex()>-1) {
-					if(PnlDrawing.getShapes().get(PnlDrawing.getLastIndex()) instanceof Point) { //modif. tacke
-						Point temp = (Point)PnlDrawing.getShapes().get(PnlDrawing.getLastIndex());
+					if(pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex()) instanceof Point) { //modif. tacke
+						Point temp = (Point)pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex());
 						DlgModPoint pointMod = new DlgModPoint();
 						pointMod.getTxtPosX().setText(""+temp.getX());
 						pointMod.getTxtPosY().setText(""+temp.getY());
@@ -208,8 +208,8 @@ public class FrmDrawing extends JFrame {
 						}
 					}
 					
-					else if(PnlDrawing.getShapes().get(PnlDrawing.getLastIndex()) instanceof Line) { //modif. linije
-						Line temp = (Line)PnlDrawing.getShapes().get(PnlDrawing.getLastIndex());
+					else if(pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex()) instanceof Line) { //modif. linije
+						Line temp = (Line)pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex());
 						DlgModLine lineMod = new DlgModLine();
 						lineMod.getTxtStartX().setText(""+temp.getStartPoint().getX());
 						lineMod.getTxtStartY().setText(""+temp.getStartPoint().getY());
@@ -227,8 +227,8 @@ public class FrmDrawing extends JFrame {
 						}
 					}
 					
-					else if(PnlDrawing.getShapes().get(PnlDrawing.getLastIndex()) instanceof Rectangle) { //modif. pravougaonika
-						Rectangle temp = (Rectangle)PnlDrawing.getShapes().get(PnlDrawing.getLastIndex());
+					else if(pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex()) instanceof Rectangle) { //modif. pravougaonika
+						Rectangle temp = (Rectangle)pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex());
 						DlgModRectangle rectMod = new DlgModRectangle();
 						rectMod.getTxtUpperX().setText(""+temp.getUpperLeft().getX());
 						rectMod.getTxtUpperY().setText(""+temp.getUpperLeft().getY());
@@ -247,14 +247,15 @@ public class FrmDrawing extends JFrame {
 						}
 					}
 					
-					else if(PnlDrawing.getShapes().get(PnlDrawing.getLastIndex()) instanceof Donut) { //modif. kruga sa rupom, kad je vec else if, krofna ide pre kruga
-						Donut temp = (Donut)PnlDrawing.getShapes().get(PnlDrawing.getLastIndex());
+					else if(pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex()) instanceof Donut) { //modif. kruga sa rupom, kad je vec else if, krofna ide pre kruga
+						Donut temp = (Donut)pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex());
 						DlgModDonut donutMod = new DlgModDonut();
 						donutMod.getTxtCenterX().setText(""+temp.getCenter().getX());
 						donutMod.getTxtCenterY().setText(""+temp.getCenter().getY());
 						donutMod.getTxtRadius().setText(""+temp.getR());
 						donutMod.getTxtInnerR().setText(""+temp.getInnerR());
 						donutMod.setVisible(true);
+						donutMod.setFrameColor(temp.getShpColor());
 						
 						if(donutMod.isAllowedToMod()) {
 							temp.getCenter().moveTo(donutMod.getCenterX(), donutMod.getCenterY());
@@ -267,8 +268,8 @@ public class FrmDrawing extends JFrame {
 						}
 					}
 					
-					else if(PnlDrawing.getShapes().get(PnlDrawing.getLastIndex()) instanceof Circle) { //modif. kruga
-						Circle temp = (Circle)PnlDrawing.getShapes().get(PnlDrawing.getLastIndex());
+					else if(pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex()) instanceof Circle) { //modif. kruga
+						Circle temp = (Circle)pnlWorkspace.getShapes().get(PnlDrawing.getLastIndex());
 						DlgModCircle circMod = new DlgModCircle();
 						circMod.getTxtCenterX().setText(""+temp.getCenter().getX());
 						circMod.getTxtCenterY().setText(""+temp.getCenter().getY());
@@ -289,6 +290,7 @@ public class FrmDrawing extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "Select an object first!", "No selection", JOptionPane.WARNING_MESSAGE);
 				}
+				repaint();
 			}
 		});
 		
